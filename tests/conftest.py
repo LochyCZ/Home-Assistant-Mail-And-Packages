@@ -1212,6 +1212,14 @@ def mock_os_path_join():
 
 
 @pytest.fixture
+def mock_os_path_join2():
+    """Fixture to mock join."""
+    with patch("os.path.join") as mock_os_path_join:
+        mock_os_path_join.return_value = "./testfile_grid.png"
+        yield mock_os_path_join
+
+
+@pytest.fixture
 def mock_os_path_split():
     """Fixture to mock split."""
     with patch("os.path.split") as mock_os_path_split:

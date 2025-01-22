@@ -27,6 +27,7 @@ CONFIG_VER = 10
 ATTR_AMAZON_IMAGE = "amazon_image"
 ATTR_COUNT = "count"
 ATTR_CODE = "code"
+ATTR_GRID_IMAGE_NAME = "grid_image"
 ATTR_ORDER = "order"
 ATTR_TRACKING = "tracking"
 ATTR_TRACKING_NUM = "tracking_#"
@@ -52,6 +53,7 @@ CONF_DURATION = "gif_duration"
 CONF_SCAN_INTERVAL = "scan_interval"
 CONF_IMAGE_SECURITY = "image_security"
 CONF_IMAP_TIMEOUT = "imap_timeout"
+CONF_GENERATE_GRID = "generate_grid"
 CONF_GENERATE_MP4 = "generate_mp4"
 CONF_AMAZON_FWDS = "amazon_fwds"
 CONF_AMAZON_DAYS = "amazon_days"
@@ -1213,6 +1215,13 @@ IMAGE_SENSORS: Final[dict[str, SensorEntityDescription]] = {
         key="usps_mail_image_url",
         entity_category=EntityCategory.DIAGNOSTIC,
     ),
+    "usps_mail_grid_image_path": SensorEntityDescription(
+        name="Mail Grid Image Path",
+        icon="mdi:folder-multiple-image",
+        key="usps_mail_grid_image_path",
+        entity_category=EntityCategory.DIAGNOSTIC,
+        entity_registry_enabled_default=False,
+    ),
 }
 
 BINARY_SENSORS: Final[dict[str, MailandPackagesBinarySensorEntityDescription]] = {
@@ -1221,12 +1230,14 @@ BINARY_SENSORS: Final[dict[str, MailandPackagesBinarySensorEntityDescription]] =
         key="usps_update",
         device_class=BinarySensorDeviceClass.UPDATE,
         selectable=False,
+        entity_registry_enabled_default=False,
     ),
     "amazon_update": MailandPackagesBinarySensorEntityDescription(
         name="Amazon Image Updated",
         key="amazon_update",
         device_class=BinarySensorDeviceClass.UPDATE,
         selectable=False,
+        entity_registry_enabled_default=False,
     ),
     "usps_mail_delivered": MailandPackagesBinarySensorEntityDescription(
         name="USPS Mail Delivered",
