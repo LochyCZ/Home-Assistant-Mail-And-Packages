@@ -150,6 +150,7 @@ AMAZON_TIME_PATTERN = [
     "Arrivée :",
     "Verwachte bezorgdatum:",
     "Votre date de livraison prévue est :",
+    "Arriving",
 ]
 AMAZON_TIME_PATTERN_END = [
     "Previously expected:",
@@ -165,6 +166,10 @@ AMAZON_TIME_PATTERN_END = [
     "Suivre",
     "Volg je pakket",
     "Je pakket volgen",
+]
+AMAZON_TIME_PATTERN_REGEX = [
+    "Arriving (\\w+ \\d+) - (\\w+ \\d+)",
+    "Arriving (\\w+ \\d+)",
 ]
 AMAZON_EXCEPTION_SUBJECT = "Delivery update:"
 AMAZON_EXCEPTION_BODY = "running late"
@@ -296,9 +301,16 @@ SENSOR_DATA = {
             "Delivery Notification",
         ],
     },
-    "capost_delivering": {},
+    "capost_delivering": {
+        "email": [
+            "donotreply-nepasrepondre@notifications.canadapost-postescanada.ca",
+        ],
+        "subject": [
+            "Your parcel is out for delivery",
+        ],
+    },
     "capost_packages": {},
-    "capost_tracking": {},
+    "capost_tracking": {"pattern": ["\\d{16}"]},
     "capost_mail": {
         "email": ["donotreply-nepasrepondre@communications.canadapost-postescanada.ca"],
         "subject": ["You have mail on the way"],
